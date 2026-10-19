@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf7ff">
+  <meta name="description" content="Tegdiw is a customizable Android home-screen widget app. Create widgets, personalize icons, and organize your shortcuts.">
+  <title>Tegdiw — Make your home screen yours</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #faf7ff;
+      --surface: #ffffff;
+      --text: #21182e;
+      --muted: #665c71;
+      --purple: #7542b8;
+      --magenta: #aa378d;
+      --pink: #d77cae;
+      --border: #e6ddec;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI",
+                   sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--purple); }
+
+    a:focus-visible {
+      outline: 3px solid var(--magenta);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navigation {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .brand span { color: var(--magenta); }
+
+    nav { display: flex; flex-wrap: wrap; gap: 22px; }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--magenta); }
+
+    .hero {
+      padding: 110px 0 100px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--magenta);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(43px, 7vw, 76px);
+      line-height: 1.09;
+      letter-spacing: -2.5px;
+      margin: 0 0 25px;
+      font-weight: 800;
+    }
+
+    .highlight { color: var(--purple); }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 0 32px;
+    }
+
+    .launch {
+      display: inline-block;
+      padding: 13px 22px;
+      border: 1px solid #d6c5e5;
+      border-radius: 10px;
+      background: #eee5f8;
+      color: #56318a;
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    section { padding: 42px 0 68px; }
+
+    h2 {
+      font-size: clamp(27px, 4vw, 36px);
+      letter-spacing: -1px;
+      margin: 0 0 16px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin: 0 0 30px;
+      max-width: 620px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 25px;
+      border-top: 3px solid var(--purple);
+    }
+
+    .feature:nth-child(2) {
+      border-top-color: var(--magenta);
+    }
+
+    .feature:nth-child(3) {
+      border-top-color: var(--pink);
+    }
+
+    .feature h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .info {
+      padding: 36px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .info p {
+      max-width: 720px;
+      color: var(--muted);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      margin-top: 20px;
+    }
+
+    .links a { font-weight: 600; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 35px;
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 700px) {
+      .navigation { align-items: flex-start; padding: 20px 0; }
+      nav { gap: 14px; }
+      .hero { padding: 75px 0 55px; }
+      h1 { letter-spacing: -1.5px; }
+      .features { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navigation">
+      <a class="brand" href="/">Tegdiw<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="container">
+      <div class="hero">
+        <span class="eyebrow">Android home-screen customization</span>
+
+        <h1>
+          Your home screen.<br>
+          <span class="highlight">Your rules.</span>
+        </h1>
+
+        <p>
+          Tegdiw gives you the freedom to create personalized
+          Android widgets. Choose your icons, images and
+          shortcuts, organize collections, and make your
+          home screen feel like yours.
+        </p>
+
+        <div class="launch">
+          Preparing for Google Play
+        </div>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="container">
+        <h2>Simple tools. More possibilities.</h2>
+        <p class="section-intro">
+          Customize the experience without making
+          everyday actions complicated.
+        </p>
+
+        <div class="features">
+          <article class="feature">
+            <h3>Personalized widgets</h3>
+            <p>
+              Create shortcuts using thousands of icons,
+              custom images and flexible appearance options.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3>Collections and actions</h3>
+            <p>
+              Organize your selected files and images,
+              or open apps, links and collections directly
+              from your home screen.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3>Make it yours</h3>
+            <p>
+              Choose from three app themes, use optional
+              widget locks and access additional customization
+              through voluntary rewarded ads.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="container info">
+        <h2>Privacy and transparency</h2>
+        <p>
+          Tegdiw is designed around local customization.
+          Your widget designs and selected content are
+          primarily stored on your device. Optional
+          Google services and rewarded advertising have
+          their own data-processing practices, which
+          will be detailed in our privacy policies.
+        </p>
+        <p>
+          The English and Arabic privacy policies are
+          being finalized ahead of public release.
+        </p>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="container info">
+        <h2>Support and contact</h2>
+        <p>
+          Questions, feedback or privacy requests?
+          Contact the Tegdiw developer directly.
+        </p>
+        <div class="links">
+          <a href="mailto:1429zozo@gmail.com">
+            1429zozo@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>© Tegdiw. Independent Android application.</span>
+      <span>Made with care.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
